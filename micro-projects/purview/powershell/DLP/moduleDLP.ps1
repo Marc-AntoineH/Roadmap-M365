@@ -1,2 +1,0 @@
-Import-Module Dlp
-New-CompleteDlpPolicy

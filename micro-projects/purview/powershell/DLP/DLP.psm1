@@ -1,3 +1,12 @@
+<#
+.DISCLAIMER
+	THIS CODE AND INFORMATION IS PROVIDED "AS IS" WITHOUT WARRANTY OF
+	ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT LIMITED TO
+	THE IMPLIED WARRANTIES OF MERCHANTABILITY AND/OR FITNESS FOR A
+	PARTICULAR PURPOSE.
+
+#>
+
 # Importer les scripts privés et publics
 $privateScripts = @(Get-ChildItem -Path "$PSScriptRoot\internal" -Filter "*.ps1" -ErrorAction SilentlyContinue)
 $publicScripts = @(Get-ChildItem -Path "$PSScriptRoot\public" -Filter "*.ps1" -ErrorAction SilentlyContinue)
@@ -11,4 +20,4 @@ foreach ($script in ($privateScripts + $publicScripts)) {
 }
 
 # Importer les informations du manifeste si besoin
-$ModuleInfo = Import-PowerShellDataFile -Path "$PSScriptRoot/Purview.Dlp.psd1"
+$ModuleInfo = Import-PowerShellDataFile -Path "$PSScriptRoot/Dlp.psd1"
