@@ -13,20 +13,31 @@
 ### REFACTOR
 function Get-PolicyBasicInfo {
     [CmdletBinding()]
-    param()
-    
-    Write-Host "`n--- CRÉATION DE LA POLITIQUE DLP ---" -ForegroundColor Yellow
+    param(
+        [Parameter()]
+        [string]$Name,
+
+        [Parameter()]
+        [string]$Comment
+    )
+
+    Write-Host "`n--- CRÉATION DE LA POLITIQUE DLP ---" -ForegroundColor Cyan
+
     $policyInfo = @{}
-    
-    # Boucle pour s'assurer que le nom de la politique est saisi
-    do {
-        $policyName = Read-Host "Nom de la politique DLP (obligatoire)"
-        if ([string]::IsNullOrWhiteSpace($policyName)) {
-            Write-Host "Le nom de la politique est obligatoire. Veuillez saisir un nom." -ForegroundColor Red
-        }
-    } while ([string]::IsNullOrWhiteSpace($policyName))
-    
-    $policyInfo.Name = $policyName
-    $policyInfo.Comment = Read-Host "Description de la politique"
+
+    # Demander le nom une première fois en dehors de la boucle
+    if ([string]::IsNullOrWhiteSpace($Name)) {
+        $Name = Read-Host "Nom de la politique DLP (obligatoire)"
+    }
+
+    # Boucle pour la validation si le nom est toujours vide après la première entré
+    while ([string]::IsNullOrWhiteSpace($Name)) {
+        Write-Warning "Le nom de la politique est obligatoire. Veuillez saisir un nom."
+        $Name = Read-Host "Nom de la politique DLP (obligatoire)"
+    }
+
+    $policyInfo.Name = $Name
+    $policyInfo.Comment = Read-Host "Description de la politique (facultatif)"
+
     return $policyInfo
 }

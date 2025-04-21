@@ -34,9 +34,6 @@ Set-DLPComplianceRule -Identity "ExternalShare" `
     -AdvancedRule $String
 
 
-
-
-
 # Creer une nouvelle DLP policy
 New-DlpCompliancePolicy -Name "Canada PII" `
     -Mode TestWithoutNotifications `
@@ -54,3 +51,47 @@ $String = $Data | Out-string
 New-DLPComplianceRule -Name "ExternalShare" `
     -Policy "Canada PII" `
     -AdvancedRule $String
+
+
+
+<#
+.SYNOPSIS
+    Fournit une brève description de ce que fait la fonction.
+    (Maximum une ligne)
+
+.DESCRIPTION
+    Fournit une description détaillée de la fonction, y compris son but,
+    son fonctionnement, et potentiellement des exemples d'utilisation plus complexes.
+    Peut s'étendre sur plusieurs lignes.
+
+.PARAMETER NomDuParamètre1
+    Décrit le premier paramètre, son rôle, s'il est obligatoire ou optionnel,
+    et les valeurs qu'il accepte.
+
+.PARAMETER NomDuParamètre2
+    Décrit le deuxième paramètre, et ainsi de suite pour tous les paramètres.
+
+.EXAMPLE
+    Get-MonExemple -Nom "Valeur" -Option $true
+    Décrit comment utiliser la fonction avec des exemples concrets.
+    Peut inclure plusieurs exemples montrant différentes utilisations.
+
+.NOTES
+    Auteur      : Votre Nom
+    Date        : AAAA-MM-JJ
+    Version     : 1.0
+    Informations supplémentaires ou remarques importantes.
+#>
+
+function Get-Something {
+    [CmdletBinding()] # La fonction hérite automatiquement de certains paramètres communs que la plupart des cmdlets PowerShell prennent en charge ex. -Verbose
+    param(
+        [Parameter()] # Cet attribut indique que $Var1 est un paramètre de la fonction. Rend $Var1 accessible lorsque vous appelez la fonction ex. Get-Something -Var1 "blablabla"
+        [string]$Var1,
+
+        [Parameter()]
+        [int]$Var2
+    )
+
+    Write-Host "Hello World!"
+    Write-Warning "Le nom est obligatoire."
