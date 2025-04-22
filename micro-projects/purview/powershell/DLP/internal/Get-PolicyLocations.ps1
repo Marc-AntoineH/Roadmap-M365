@@ -33,17 +33,8 @@ function Get-PolicyLocations {
 
         [Parameter()]
         [ValidateSet("O", "N")]
-        [string]$Teams,
-
-        [Parameter()]
-        [ValidateSet("O", "N")]
-        [string]$Endpoint
+        [string]$Teams
     )
-
-    Write-Host "`n--- CONFIGURATION DES EMPLACEMENTS DE LA POLITIQUE DLP ---" -ForegroundColor Cyan
-    Write-Host "`nVeuillez saisir O pour Oui ou N pour Non."
-
-    $locations = @{}
 
     # Fonction interne pour lire une entrée validée (O/N)
     function Read-ONInput {
@@ -56,22 +47,21 @@ function Get-PolicyLocations {
             if ($input -in "O", "N") {
                 $PSBoundParameters[$parameterName] = $input
             } else {
-                Write-Warning "Entrée invalide. Veuillez saisir O pour Oui ou N pour Non."
+                Write-Warning "Entrée invalide. Veuillez saisir `"O`" pour Oui ou `"N`" pour Non."
             }
         }
         return ($PSBoundParameters[$parameterName] -ceq "O")
     }
 
+    Write-Host "`n--- CONFIGURATION DES EMPLACEMENTS DE LA POLITIQUE DLP ---" -ForegroundColor Cyan
+    Write-Host "`nVeuillez saisir `"O`" pour Oui ou `"N`" pour Non." -ForegroundColor Green
+
+    $locations = @{}
+
     $locations.Exchange = Read-ONInput "Exchange Online" "Exchange"
     $locations.SharePoint = Read-ONInput "SharePoint" "SharePoint"
     $locations.OneDrive = Read-ONInput "OneDrive" "OneDrive"
     $locations.Teams = Read-ONInput "Teams" "Teams"
-    $locations.Endpoint = Read-ONInput "Endpoint" "Endpoint"
 
     return $locations
 }
-
-
-
-
-

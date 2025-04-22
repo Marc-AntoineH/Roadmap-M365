@@ -91,7 +91,16 @@ function Get-Something {
 
         [Parameter()]
         [int]$Var2
+
+        [Parameter()]
+        [ValidateSet("valeur1", "valeur2")]
+        [string]$Var3
     )
 
+    # Différentes commandes pour afficher des informations à l'utilisateur
     Write-Host "Hello World!"
     Write-Warning "Le nom est obligatoire."
+    Write-Error
+    Write-Verbose
+
+    Read-Host # Demande input à l'utilisateur

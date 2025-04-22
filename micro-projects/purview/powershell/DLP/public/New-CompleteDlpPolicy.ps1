@@ -6,18 +6,18 @@ function New-CompleteDlpPolicy {
     $policyInfo = Get-PolicyBasicInfo
     $policyMode = Get-PolicyMode
     $locations = Get-PolicyLocations
-    $ruleName = Get-RuleBasicInfo
+    $ruleInfo = Get-RuleBasicInfo
     $sensitiveInfoTypes = Get-SensitiveInfoTypes
     $minCount = Get-RuleMinimumCount
     $actions = Get-RuleActions
     
     # Construire les paramètres
     $policyParams = Build-PolicyParameters -PolicyInfo $policyInfo -PolicyMode $policyMode -Locations $locations
-    $ruleParams = Build-RuleParameters -RuleName $ruleName -PolicyName $policyInfo.Name -SensitiveInfoTypes $sensitiveInfoTypes -MinCount $minCount -Actions $actions
+    $ruleParams = Build-RuleParameters -RuleInfo $ruleInfo -PolicyName $policyInfo.Name -SensitiveInfoTypes $sensitiveInfoTypes -MinCount $minCount -Actions $actions
     
     # Afficher le résumé
     Show-ConfigurationSummary -PolicyInfo $policyInfo -PolicyMode $policyMode -Locations $locations `
-                              -RuleName $ruleName -SensitiveInfoTypes $sensitiveInfoTypes `
+                              -RuleInfo $ruleInfo -SensitiveInfoTypes $sensitiveInfoTypes `
                               -MinCount $minCount -Actions $actions
     
     # Déployer la politique

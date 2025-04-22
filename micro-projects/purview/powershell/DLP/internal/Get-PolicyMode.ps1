@@ -22,7 +22,7 @@ function Get-PolicyMode {
     param(
         [Parameter()]
         [ValidateSet("Enable", "TestWithNotifications", "TestWithoutNotifications", "Disable")]
-        $PolicyMode
+        [string]$PolicyMode
     )
 
     if (-not $PolicyMode) {

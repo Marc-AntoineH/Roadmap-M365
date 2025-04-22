@@ -11,7 +11,7 @@ function Show-ConfigurationSummary {
         [hashtable]$Locations,
         
         [Parameter(Mandatory=$true)]
-        [string]$RuleName,
+        [hashtable]$RuleInfo,
         
         [Parameter(Mandatory=$true)]
         [hashtable]$SensitiveInfoTypes,
@@ -34,10 +34,10 @@ function Show-ConfigurationSummary {
     Write-Host "  - SharePoint: $($Locations.SharePoint)"
     Write-Host "  - OneDrive: $($Locations.OneDrive)"
     Write-Host "  - Teams: $($Locations.Teams)"
-    Write-Host "  - Endpoint: $($Locations.Endpoint)"
     
     Write-Host "`nRÈGLE DLP :" -ForegroundColor Cyan
-    Write-Host "- Nom: $RuleName"
+    Write-Host "- Nom: $($RuleInfo.Name)"
+    Write-Host "- Description: $($RuleInfo.Comment)"
     Write-Host "- Types d'information sensible:"
     foreach ($typeName in $SensitiveInfoTypes.SelectedTypeNames) {
         Write-Host "  - $typeName"

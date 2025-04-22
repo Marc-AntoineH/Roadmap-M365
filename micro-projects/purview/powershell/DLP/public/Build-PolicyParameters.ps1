@@ -21,7 +21,6 @@ function Build-PolicyParameters {
     if ($Locations.SharePoint) { $policyParams.Add("SharePointLocation", "All") }
     if ($Locations.OneDrive) { $policyParams.Add("OneDriveLocation", "All") }
     if ($Locations.Teams) { $policyParams.Add("TeamsLocation", "All") }
-    if ($Locations.Endpoint) { $policyParams.Add("EndpointDlpLocation", "All") }
     
     return $policyParams
 }

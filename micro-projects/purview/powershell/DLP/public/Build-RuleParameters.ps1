@@ -2,7 +2,7 @@ function Build-RuleParameters {
     [CmdletBinding()]
     param (
         [Parameter(Mandatory=$true)]
-        [string]$RuleName,
+        [hashtable]$RuleInfo,
         
         [Parameter(Mandatory=$true)]
         [string]$PolicyName,
@@ -18,7 +18,8 @@ function Build-RuleParameters {
     )
     
     $ruleParams = @{
-        Name = $RuleName
+        Name = $RuleInfo.Name
+        Comment = $RuleInfo.Comment
         Policy = $PolicyName
     }
     
