@@ -1,1 +1,0 @@
-projet avec yfinance, la lib python Yahoo Finance
